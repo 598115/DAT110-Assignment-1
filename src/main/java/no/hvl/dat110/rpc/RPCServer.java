@@ -46,15 +46,18 @@ public class RPCServer {
 
 		while (!stop) {
 	    
-		   byte rpcid = 0;
+		   byte rpcid = -1;
 		   Message requestmsg, replymsg;
 			
 		   requestmsg = connection.receive();
-		   byte rpcID = requestmsg.getData()[0];
+		   rpcid = requestmsg.getData()[0];
+
 		   byte[] parameter = RPCUtils.decapsulate(requestmsg.getData());
 		   
-		   RPCRemoteImpl calledMethod = services.get(rpcID);
+		   RPCRemoteImpl calledMethod = services.get(rpcid);
+
 		   byte[] returnValue = calledMethod.invoke(parameter);
+
            replymsg = new Message(returnValue);
 		   connection.send(replymsg);
 

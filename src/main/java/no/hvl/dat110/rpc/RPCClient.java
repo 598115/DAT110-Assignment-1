@@ -36,13 +36,10 @@ public class RPCClient {
 	public byte[] call(byte rpcid, byte[] param) {
 
 		byte[] encapped = RPCUtils.encapsulate(rpcid, param);
-		System.out.println("Encapped length: " + encapped.length);
 		Message requestMessage = new Message(encapped);
-		System.out.println("In call before send: " + requestMessage.getData().length);
 		connection.send(requestMessage);
 				
 	    Message responseMessage = connection.receive();
-		System.out.println("Responemessage from call: " + responseMessage.getData().length);
         byte[] returnval = responseMessage.getData();
 
 		return returnval;

@@ -5,7 +5,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.Arrays;
 
 
 public class MessageConnection {
@@ -34,10 +33,7 @@ public class MessageConnection {
     // encapsulate the data contained in the Message and write to the output stream
 	public void send(Message message) {
 
-		System.out.println("In send length: " + message.getData().length);
-
 		byte[] data = MessageUtils.encapsulate(message);
-
 		try {
 			outStream.write(data);
 		} catch (IOException e) {
@@ -52,15 +48,11 @@ public class MessageConnection {
 		byte[] data = new byte[128];
 		
 		try {
-			int bytesRead = inStream.read(data);
-			System.out.println("HEXDUMP: " + Arrays.toString(data));
-			System.out.println("Bytes read: " + bytesRead);
+			inStream.read(data);
 		} catch (IOException e) {
 			System.err.println(e.getMessage());
 			e.printStackTrace();
 		}
-
-
 
 		Message message = MessageUtils.decapsulate(data);
 		return message;		

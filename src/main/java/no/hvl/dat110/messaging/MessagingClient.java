@@ -21,7 +21,7 @@ public class MessagingClient {
 
         Socket clientSocket = null;
 		try {
-			clientSocket = new Socket(server, port);	
+			clientSocket = new Socket(this.server, this.port);	
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 			e.printStackTrace();

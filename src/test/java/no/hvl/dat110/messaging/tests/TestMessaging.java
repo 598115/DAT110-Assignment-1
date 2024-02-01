@@ -76,7 +76,7 @@ public class TestMessaging {
 					Message message1 = new Message(clientsent);
 
 					connection.send(message1);
-
+                //////////////////////////////////////////////////Current
 					Message message2 = connection.receive();
 
 					byte[] clientreceived = message2.getData();
@@ -95,6 +95,8 @@ public class TestMessaging {
 		};
 
 		try {
+			server.setName("Server");
+			client.setName("Client");
 			server.start();
 			client.start();
 

@@ -7,8 +7,6 @@ public class RPCUtils {
 
 	// Encapsulate the rpcid and payload in a byte array according to the RPC message syntax / format
 	public static byte[] encapsulate(byte rpcid, byte[] payload) {
-
-		System.out.println("Payload in RPCUtils encapsulate: " + RPCUtils.unmarshallString(payload) + " Thread: " + Thread.currentThread().getName());
 		
 		byte[] rpcmsg = new byte[payload.length + 1];
 		rpcmsg[0] = rpcid;
@@ -46,21 +44,18 @@ public class RPCUtils {
 	public static String unmarshallString(byte[] data) {
 		
 		String decoded = new String(data, StandardCharsets.UTF_8); 
-		System.out.println("After unmarshalling in unmarshallString(): " + decoded);
 		return decoded;
 	}
 	
 	public static byte[] marshallVoid() {
 		
-		//5 bytes of value 255 each, which can not be interpreted as any of the other supported data types to be marshalled
-		byte[] encoded = {(byte)0xFF, (byte)0xFF, (byte)0xFF, (byte)0xFF, (byte)0xFF};
+		byte[] encoded = {99};
 		
 		return encoded;
 		
 	}
 	
 	public static void unmarshallVoid(byte[] data) {
-		//TODO   Does not need to do anythting??
 	}
 
 	// convert boolean to a byte array representation
@@ -80,7 +75,6 @@ public class RPCUtils {
 
 	// convert byte array to a boolean representation
 	public static boolean unmarshallBoolean(byte[] data) {
-		System.out.println("In unmarshall: " + data.length);
 		return (data[0] > 0);
 		
 	}

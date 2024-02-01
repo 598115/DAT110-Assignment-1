@@ -8,15 +8,11 @@ public class MessageUtils {
 	public static String MESSAGINGHOST = "localhost";
 
 	public static byte[] encapsulate(Message message) {
-		
-        System.out.println("In messageUtils encapsu: " + message.getData().length);
 
 		byte[] data = message.getData();
 		byte header = (byte) message.getData().length;
 		byte[] segment = new byte[128];
 		segment[0] = header;
-
-		System.out.println("Header size in msgutils: " + header);
 
 		System.arraycopy(data, 0, segment, 1, data.length);
 

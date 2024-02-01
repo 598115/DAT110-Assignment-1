@@ -355,14 +355,15 @@ public class TestRPC {
 					TestBooleanBooleanStub boolboolstub = new TestBooleanBooleanStub(client);
 
 					// boolean test case
-
+               
 					boolean testb = true;
 					boolean resb = boolboolstub.m(testb);
 
 					assertEquals(!testb, resb);
+                
+					 testb = false;
+					 resb = boolboolstub.m(testb);
 
-					testb = false;
-					resb = boolboolstub.m(testb);
 					assertEquals(!testb, resb);
                 
 					stopstub.stop();
