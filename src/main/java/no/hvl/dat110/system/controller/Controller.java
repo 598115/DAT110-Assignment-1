@@ -38,7 +38,12 @@ public class Controller  {
 
 			int temp = sensor.read();
 			display.write(Integer.toString(temp));
-		  
+
+         try{Thread.sleep(600);}
+		 catch(Exception e) {
+            e.printStackTrace();
+		 }
+			  
 		  }
 		
 		
