@@ -13,6 +13,7 @@ public class TestStringStringStub extends RPCLocalStub {
 	public String m(String str) {
 		
 		byte[] request = RPCUtils.marshallString(str);
+		System.out.println("Marshalled bytearray length " + request.length);
 		
 		byte[] reply = rpcclient.call((byte)2,request);
 		

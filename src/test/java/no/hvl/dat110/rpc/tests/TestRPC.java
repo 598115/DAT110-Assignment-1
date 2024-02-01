@@ -364,7 +364,7 @@ public class TestRPC {
 					testb = false;
 					resb = boolboolstub.m(testb);
 					assertEquals(!testb, resb);
-
+                
 					stopstub.stop();
 
 					client.disconnect();

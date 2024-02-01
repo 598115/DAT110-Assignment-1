@@ -1,6 +1,5 @@
 package no.hvl.dat110.rpc;
 
-import no.hvl.dat110.TODO;
 import no.hvl.dat110.messaging.*;
 
 public class RPCClient {
@@ -15,27 +14,16 @@ public class RPCClient {
 	
 		msgclient = new MessagingClient(server,port);
 	}
-	
+
+	// connect using the RPC client
 	public void connect() {
-		
-		// TODO - START
-		// connect using the RPC client
-		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
-		
-		// TODO - END
+		connection = msgclient.connect();
 	}
-	
+
+	// disconnect by closing the underlying messaging connection
 	public void disconnect() {
 		
-		// TODO - START
-		// disconnect by closing the underlying messaging connection
-		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
-		
-		// TODO - END
+		connection.close();
 	}
 
 	/*
@@ -46,23 +34,17 @@ public class RPCClient {
 	 */
 
 	public byte[] call(byte rpcid, byte[] param) {
-		
-		byte[] returnval = null;
-		
-		// TODO - START
 
-		/*
-
-		The rpcid and param must be encapsulated according to the RPC message format
-
-		The return value from the RPC call must be decapsulated according to the RPC message format
-
-		*/
+		byte[] encapped = RPCUtils.encapsulate(rpcid, param);
+		System.out.println("Encapped length: " + encapped.length);
+		Message requestMessage = new Message(encapped);
+		System.out.println("In call before send: " + requestMessage.getData().length);
+		connection.send(requestMessage);
 				
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
-		
-		// TODO - END
+	    Message responseMessage = connection.receive();
+		System.out.println("Responemessage from call: " + responseMessage.getData().length);
+        byte[] returnval = responseMessage.getData();
+
 		return returnval;
 		
 	}

@@ -2,8 +2,7 @@ package no.hvl.dat110.messaging;
 
 import java.io.IOException;
 import java.net.ServerSocket;
-
-import no.hvl.dat110.TODO;
+import java.net.Socket;
 
 public class MessagingServer {
 
@@ -24,18 +23,21 @@ public class MessagingServer {
 	}
 
 	// accept an incoming connection from a client
+	// accept TCP connection on welcome socket and create messaging connection to be returned
 	public MessageConnection accept() {
 
 		MessageConnection connection = null;
+		Socket ConnectionSocket = null;
 
-		// TODO - START
-		// accept TCP connection on welcome socket and create messaging connection to be returned
+	    try {
+			ConnectionSocket = this.welcomeSocket.accept();
+		} catch (IOException e) {
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+		}
 
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
-		
-		// TODO - END
-		
+		connection = new MessageConnection(ConnectionSocket);
+
 		return connection;
 
 	}
