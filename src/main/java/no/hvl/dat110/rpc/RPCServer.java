@@ -26,7 +26,7 @@ public class RPCServer {
 		
 		// the stop RPC method is built into the server
 		RPCRemoteImpl rpcstop = new RPCServerStopImpl(RPCCommon.RPIDSTOP,this);
-		rpcstop.getClass();                                                           ////////
+		rpcstop.getClass();//no function                                                         
 		
 		System.out.println("RPC SERVER RUN - Services: " + services.size());
 			
